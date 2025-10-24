@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ThreeDMarquee } from '../components/ProjectBackground';
 
 export default function Projects() {
   const projects = [
@@ -26,7 +27,9 @@ export default function Projects() {
   ];
 
   return (
-    <div className="min-h-screen bg-black text-white pt-20 p-8">
+    <div className="min-h-screen bg-black text-white relative">
+      <ThreeDMarquee className="absolute inset-0 opacity-20" />
+      <div className="relative z-10 pt-20 p-8">
       <div className="max-w-6xl mx-auto">
         <h1 className="text-4xl font-bold mb-8">My Projects</h1>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -55,6 +58,7 @@ export default function Projects() {
             </div>
           ))}
         </div>
+      </div>
       </div>
     </div>
   );
