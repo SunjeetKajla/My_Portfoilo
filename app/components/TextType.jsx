@@ -128,7 +128,6 @@ const TextType = ({
     }
 
     return () => clearTimeout(timeout);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
     currentCharIndex,
     displayedText,
@@ -153,7 +152,7 @@ const TextType = ({
     Component,
     {
       ref: containerRef,
-      className: `inline-block whitespace-pre-wrap tracking-tight ${className}`,
+      className: `whitespace-pre-wrap tracking-tight ${className}`,
       ...props
     },
     <span className="inline" style={{ color: getCurrentTextColor() }}>
