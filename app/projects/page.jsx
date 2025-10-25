@@ -28,16 +28,16 @@ export default function Projects() {
 
   return (
     <div className="min-h-screen bg-black text-white relative">
-      <ThreeDMarquee className="absolute inset-0 opacity-20" />
-      <div className="relative z-10 pt-20 p-8">
+      <ThreeDMarquee className="absolute inset-0 opacity-40" />
+      <div className="relative z-10 pt-24 sm:pt-28 p-4 sm:p-8">
       <div className="max-w-6xl mx-auto">
-        <h1 className="text-4xl font-bold mb-8">My Projects</h1>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <h1 className="text-2xl sm:text-4xl font-bold mb-6 sm:mb-8">My Projects</h1>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
           {projects.map((project) => (
-            <div key={project.id} className="bg-gray-900 p-6 rounded-lg hover:bg-gray-800 transition-colors">
+            <div key={project.id} className="bg-gray-900 p-4 sm:p-6 rounded-lg hover:bg-gray-800 transition-colors">
               <div className="flex justify-between items-start mb-4">
-                <h2 className="text-xl font-semibold">{project.title}</h2>
-                <span className={`px-3 py-1 rounded-full text-sm ${
+                <h2 className="text-lg sm:text-xl font-semibold">{project.title}</h2>
+                <span className={`px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm ${
                   project.status === 'Completed' ? 'bg-green-600' :
                   project.status === 'In Progress' ? 'bg-yellow-600' : 'bg-blue-600'
                 }`}>
