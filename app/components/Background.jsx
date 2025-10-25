@@ -358,7 +358,7 @@ const Hyperspeed = ({
         this.container = container;
         this.renderer = new THREE.WebGLRenderer({
           antialias: false,
-          alpha: true
+          alpha: false
         });
         this.renderer.setSize(container.offsetWidth, container.offsetHeight, false);
         this.renderer.setPixelRatio(window.devicePixelRatio);
@@ -375,7 +375,7 @@ const Hyperspeed = ({
         this.camera.position.y = 8;
         this.camera.position.x = 0;
         this.scene = new THREE.Scene();
-        this.scene.background = null;
+        this.scene.background = new THREE.Color(0x000000);
 
         let fog = new THREE.Fog(options.colors.background, options.length * 0.2, options.length * 500);
         this.scene.fog = fog;
