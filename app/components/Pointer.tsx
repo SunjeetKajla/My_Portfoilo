@@ -18,7 +18,7 @@ import { cn } from "../lib/utils"
  * @component
  * @param {HTMLMotionProps<"div">} props - The component props
  */
-export function Pointer({
+export default function Pointer({
   className,
   style,
   children,

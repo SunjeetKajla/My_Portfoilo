@@ -20,11 +20,16 @@ export const AnimatedThemeToggler = ({
   const buttonRef = useRef<HTMLButtonElement>(null)
 
   useEffect(() => {
+    const savedTheme = localStorage.getItem("theme")
+    const isDarkMode = savedTheme === "dark"
+    setIsDark(isDarkMode)
+    if (isDarkMode) {
+      document.documentElement.classList.add("dark")
+    }
+
     const updateTheme = () => {
       setIsDark(document.documentElement.classList.contains("dark"))
     }
-
-    updateTheme()
 
     const observer = new MutationObserver(updateTheme)
     observer.observe(document.documentElement, {
@@ -75,7 +80,8 @@ export const AnimatedThemeToggler = ({
     <button
       ref={buttonRef}
       onClick={toggleTheme}
-      className={cn(className)}
+      className={cn("transition-colors", className)}
+      style={{ color: 'var(--foreground)', opacity: 0.7 }}
       {...props}
     >
       {isDark ? <Sun /> : <Moon />}

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ThreeDMarquee } from '../components/ProjectBackground';
+import { ThreeDMarquee } from '../../components/ProjectBackground';
 
 export default function Projects() {
   const projects = [
@@ -27,14 +27,14 @@ export default function Projects() {
   ];
 
   return (
-    <div className="min-h-screen bg-black text-white relative">
+    <div className="min-h-screen relative" style={{ background: 'var(--background)', color: 'var(--foreground)' }}>
       <ThreeDMarquee className="absolute inset-0 opacity-40" />
       <div className="relative z-10 pt-24 sm:pt-28 p-4 sm:p-8">
       <div className="max-w-6xl mx-auto">
         <h1 className="text-2xl sm:text-4xl font-bold mb-6 sm:mb-8">My Projects</h1>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
           {projects.map((project) => (
-            <div key={project.id} className="bg-gray-900 p-4 sm:p-6 rounded-lg hover:bg-gray-800 transition-colors">
+            <div key={project.id} className="p-4 sm:p-6 rounded-lg transition-colors" style={{ background: 'var(--background)', color: 'var(--foreground)', opacity: 0.9 }}>
               <div className="flex justify-between items-start mb-4">
                 <h2 className="text-lg sm:text-xl font-semibold">{project.title}</h2>
                 <span className={`px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm ${
@@ -44,15 +44,15 @@ export default function Projects() {
                   {project.status}
                 </span>
               </div>
-              <p className="text-gray-300 mb-4">{project.description}</p>
+              <p className="mb-4" style={{ opacity: 0.8 }}>{project.description}</p>
               <div className="flex flex-wrap gap-2 mb-4">
                 {project.tech.map((tech, index) => (
-                  <span key={index} className="bg-gray-700 px-2 py-1 rounded text-sm">
+                  <span key={index} className="px-2 py-1 rounded text-sm" style={{ background: 'var(--background)', opacity: 0.7 }}>
                     {tech}
                   </span>
                 ))}
               </div>
-              <button className="text-blue-400 hover:text-blue-300 font-medium">
+              <button className="font-medium" style={{ color: '#60a5fa' }}>
                 View Details →
               </button>
             </div>

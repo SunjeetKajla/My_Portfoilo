@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import * as THREE from 'three';
 import { BloomEffect, EffectComposer, EffectPass, RenderPass, SMAAEffect, SMAAPreset } from 'postprocessing';
 
@@ -32,9 +32,9 @@ const Hyperspeed = ({
     carShiftX: [-0.8, 0.8],
     carFloorSeparation: [0, 5],
     colors: {
-      roadColor: 0x080808,
-      islandColor: 0x0a0a0a,
-      background: 0x000000,
+      roadColor: typeof window !== 'undefined' ? getComputedStyle(document.documentElement).getPropertyValue('--background').trim() || '#080808' : '#080808',
+      islandColor: typeof window !== 'undefined' ? getComputedStyle(document.documentElement).getPropertyValue('--background').trim() || '#0a0a0a' : '#0a0a0a',
+      background: typeof window !== 'undefined' ? getComputedStyle(document.documentElement).getPropertyValue('--background').trim() || '#000000' : '#000000',
       shoulderLines: 0xffffff,
       brokenLines: 0xffffff,
       leftCars: [0xd856bf, 0x6750a2, 0xc247ac],
@@ -45,6 +45,18 @@ const Hyperspeed = ({
 }) => {
   const hyperspeed = useRef(null);
   const appRef = useRef(null);
+  const [themeKey, setThemeKey] = useState(0);
+
+  useEffect(() => {
+    const observer = new MutationObserver(() => {
+      setThemeKey(prev => prev + 1);
+    });
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['class']
+    });
+    return () => observer.disconnect();
+  }, []);
 
   useEffect(() => {
     // Force resize after component mounts
@@ -375,7 +387,8 @@ const Hyperspeed = ({
         this.camera.position.y = 8;
         this.camera.position.x = 0;
         this.scene = new THREE.Scene();
-        this.scene.background = new THREE.Color(0x000000);
+        const bgColor = getComputedStyle(document.documentElement).getPropertyValue('--background').trim();
+        this.scene.background = new THREE.Color(bgColor || '#000000');
 
         let fog = new THREE.Fog(options.colors.background, options.length * 0.2, options.length * 500);
         this.scene.fog = fog;
@@ -1121,7 +1134,7 @@ const Hyperspeed = ({
         appRef.current.dispose();
       }
     };
-  }, [effectOptions]);
+  }, [effectOptions, themeKey]);
 
   return <div id="lights" className="w-full h-screen fixed top-0 left-0" ref={hyperspeed}></div>;
 };
